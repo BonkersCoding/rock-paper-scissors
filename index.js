@@ -2,29 +2,29 @@ function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
         case 0:
-            computerChoice = 'rock'
+            return 'rock';
             break;
 
         case 1:
-            computerChoice = 'paper'
+            return 'paper';
             break;
     
         default:
-            computerChoice = 'scissors'
+            return 'scissors';
             break;
     }
-    return computerChoice;    
+        
 }
 
 function getHumanChoice(choice) {
-    let lowercase = choice.toLowerCase();
-    return lowercase;
+    return choice.toLowerCase();
 }
+
+playGame();
 
 function playGame() {
     let humanChoice;
     let computerChoice;
-    let winLose;
     let humanScore = 0;
     let computerScore = 0;
     
@@ -32,32 +32,32 @@ function playGame() {
         
         console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
         if (humChoice == compChoice) {
-            winLose = 'draw';
+            return 'draw';
         } else {
 
             switch (humChoice) {
                 case 'rock':
-                    winLose = (compChoice == 'scissors' ? 'win' : 'lose');
+                    return (compChoice == 'scissors' ? 'win' : 'lose');
                     break;
                 case 'paper':
-                    winLose = (compChoice == 'rock' ? 'win' : 'lose');
+                    return (compChoice == 'rock' ? 'win' : 'lose');
                     break;
                 case 'scissors':
-                    winLose = (compChoice == 'paper' ? 'win' : 'lose');
+                    return (compChoice == 'paper' ? 'win' : 'lose');
                     break;
                 default:
                     console.log('invalid string');
+                    return 'invalid';
                     break;
             }
         }
-        return winLose;
     } 
 
     for (let i = 0; i < 5; i++) {
 
         humanChoice = getHumanChoice(prompt('Rock, paper or scissors?', ''));
         computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
+        let winLose = playRound(humanChoice, computerChoice);
 
         switch (winLose) {
             case 'win':
