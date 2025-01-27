@@ -8,9 +8,7 @@
 <body>
 
     <script>
-        let computerChoice;
-        let humanChoice;
-
+             
         function getComputerChoice() {
             let randomNumber = Math.floor(Math.random() * 3);
             switch (randomNumber) {
@@ -25,14 +23,41 @@
                 default:
                     computerChoice = 'scissors'
                     break;
-            }    
+            }
+            return computerChoice;    
         }
 
-        function getHumanChoice() {
-            let input = prompt('Rock, paper or scissors?', '')
-            let humanChoice = input.toLowerCase();
-            console.log(humanChoice)
+        function getHumanChoice(choice) {
+            let humanChoice = choice.toLowerCase();
+            return humanChoice;
         }
+        
+
+        function playRound () {
+            let humChoice = getHumanChoice(prompt('Rock, paper or scissors?', ''));
+            let compChoice = getComputerChoice();
+            let winLose;
+            if (humChoice == compChoice) {
+                console.log('Draw')
+            } else {
+
+                switch (humChoice) {
+                    case 'rock':
+                        winLose = (compChoice == 'scissors' ? 1 : 0);
+                        break;
+                    case 'paper':
+                        winLose = (compChoice == 'rock' ? 1 : 0);
+                        break;
+                    case 'scissors':
+                        winLose = (compChoice == 'paper' ? 1 : 0);
+                        break;
+                    default:
+                        console.log('invalid string');
+                        break;
+                }
+            }
+            console.log(humChoice, compChoice, winLose);
+            }        
 
     </script>
     
