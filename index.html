@@ -28,36 +28,45 @@
         }
 
         function getHumanChoice(choice) {
-            let humanChoice = choice.toLowerCase();
-            return humanChoice;
+            let lowercase = choice.toLowerCase();
+            return lowercase;
         }
         
-
-        function playRound () {
-            let humChoice = getHumanChoice(prompt('Rock, paper or scissors?', ''));
-            let compChoice = getComputerChoice();
+        function playGame() {
+            let humanChoice = getHumanChoice(prompt('Rock, paper or scissors?', ''));
+            let computerChoice = getComputerChoice();
             let winLose;
-            if (humChoice == compChoice) {
-                console.log('Draw')
-            } else {
 
-                switch (humChoice) {
-                    case 'rock':
-                        winLose = (compChoice == 'scissors' ? 1 : 0);
-                        break;
-                    case 'paper':
-                        winLose = (compChoice == 'rock' ? 1 : 0);
-                        break;
-                    case 'scissors':
-                        winLose = (compChoice == 'paper' ? 1 : 0);
-                        break;
-                    default:
-                        console.log('invalid string');
-                        break;
+            function playRound(humChoice, compChoice) {
+                
+                console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `)
+                if (humChoice == compChoice) {
+                    console.log('Draw')
+                } else {
+
+                    switch (humChoice) {
+                        case 'rock':
+                            winLose = (compChoice == 'scissors' ? 'win' : 'lose');
+                            break;
+                        case 'paper':
+                            winLose = (compChoice == 'rock' ? 'win' : 'lose');
+                            break;
+                        case 'scissors':
+                            winLose = (compChoice == 'paper' ? 'win' : 'lose');
+                            break;
+                        default:
+                            winLose = 'draw';
+                            console.log('invalid string');
+                            break;
+                    }
+                    console.log(`You ${winLose}`);
                 }
-            }
-            console.log(humChoice, compChoice, winLose);
-            }        
+                return winLose;
+                
+            } 
+
+            playRound(humanChoice, computerChoice);
+        }
 
     </script>
     
