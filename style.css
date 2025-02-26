@@ -1,0 +1,11 @@
+img {
+    background-color: blue;
+    max-height: 200px;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+}
