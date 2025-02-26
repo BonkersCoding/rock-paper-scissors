@@ -11,6 +11,7 @@ h1 {
 }
 
 .choices {
+    padding: 0 500px;
     background-color: #202A25;
     display: flex;
     justify-content: center;
