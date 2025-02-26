@@ -1,3 +1,7 @@
+let choices = document.querySelector('.choices');
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
@@ -16,69 +20,55 @@ function getComputerChoice() {
         
 }
 
-function getHumanChoice(choice) {
-    return choice.toLowerCase();
-}
-
-playGame();
-
-function playGame() {
-    let humanChoice;
-    let computerChoice;
-    let humanScore = 0;
-    let computerScore = 0;
-    
-    function playRound(humChoice, compChoice) {
+choices.addEventListener('click', (event) => {   
+    let target = event.target;
+    let humanChoice = target.id;
+    let computerChoice = getComputerChoice();
+    let result = playRound(humanChoice, computerChoice);
+    switch (result) {
+        case 'win':
+            humanScore += 1;
+            console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+            break;
         
-        alert(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
-        if (humChoice == compChoice) {
-            return 'draw';
-        } else {
+        case 'lose':
+            computerScore += 1;
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+            break;
+        
+        case 'draw':
+            console.log("It's a draw! Try again!");
+            break;
+        
+        default:
+            break;
+    }
+    console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
+});
 
-            switch (humChoice) {
-                case 'rock':
-                    return (compChoice == 'scissors' ? 'win' : 'lose');
-                    break;
-                case 'paper':
-                    return (compChoice == 'rock' ? 'win' : 'lose');
-                    break;
-                case 'scissors':
-                    return (compChoice == 'paper' ? 'win' : 'lose');
-                    break;
-                default:
-                    alert('invalid string');
-                    return 'invalid';
-                    break;
-            }
-        }
-    } 
+function playRound(humChoice, compChoice) {
+        
+    console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
+    if (humChoice == compChoice) {
+        return 'draw';
+    } else {
 
-    for (let i = 0; i < 5; i++) {
-
-        humanChoice = getHumanChoice(prompt('Rock, paper or scissors?', ''));
-        computerChoice = getComputerChoice();
-        let winLose = playRound(humanChoice, computerChoice);
-
-        switch (winLose) {
-            case 'win':
-                humanScore += 1;
-                alert(`You win! ${humanChoice} beats ${computerChoice}!`);
+        switch (humChoice) {
+            case 'rock':
+                return (compChoice == 'scissors' ? 'win' : 'lose');
                 break;
-            
-            case 'lose':
-                computerScore += 1;
-                alert(`You lose! ${computerChoice} beats ${humanChoice}!`);
+            case 'paper':
+                return (compChoice == 'rock' ? 'win' : 'lose');
                 break;
-            
-            case 'draw':
-                alert("It's a draw! Try again!");
+            case 'scissors':
+                return (compChoice == 'paper' ? 'win' : 'lose');
                 break;
-            
             default:
-                i--;
+                console.log('invalid string');
+                return 'invalid';
                 break;
-        } 
-    
-        alert(`Human: ${humanScore} | Computer: ${computerScore}`);
+        }
     }
 }
+
+
