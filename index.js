@@ -30,7 +30,7 @@ function playGame() {
     
     function playRound(humChoice, compChoice) {
         
-        console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
+        alert(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
         if (humChoice == compChoice) {
             return 'draw';
         } else {
@@ -46,7 +46,7 @@ function playGame() {
                     return (compChoice == 'paper' ? 'win' : 'lose');
                     break;
                 default:
-                    console.log('invalid string');
+                    alert('invalid string');
                     return 'invalid';
                     break;
             }
@@ -62,16 +62,16 @@ function playGame() {
         switch (winLose) {
             case 'win':
                 humanScore += 1;
-                console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+                alert(`You win! ${humanChoice} beats ${computerChoice}!`);
                 break;
             
             case 'lose':
                 computerScore += 1;
-                console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+                alert(`You lose! ${computerChoice} beats ${humanChoice}!`);
                 break;
             
             case 'draw':
-                console.log("It's a draw! Try again!");
+                alert("It's a draw! Try again!");
                 break;
             
             default:
@@ -79,6 +79,6 @@ function playGame() {
                 break;
         } 
     
-        console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
+        alert(`Human: ${humanScore} | Computer: ${computerScore}`);
     }
 }
