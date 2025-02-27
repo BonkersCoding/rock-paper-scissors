@@ -1,4 +1,5 @@
 let choices = document.querySelector('.choices');
+let imgs = document.querySelectorAll('.img');
 let message = document.querySelector('#message');
 let score = document.querySelector('#score');
 let header = document.querySelector("#header")
@@ -24,39 +25,38 @@ function getComputerChoice() {
 }
 
 
-function borderColor(humanChoice, computerChoice) {
-    humanChoice.style.border = "5px solid green";
-    document.getElementById(computerChoice).style.border = "5px solid red";
-}
-
-
 choices.addEventListener('click', (event) => {   
     let target = event.target;
     let humanChoice = target.id;
     let computerChoice = getComputerChoice();
+    imgs.forEach((img) => { img.style.border= "none" })
     let result = playRound(humanChoice, computerChoice);
     switch (result) {
         case 'win':
             humanScore += 1;
             console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
             header.textContent = `You win! ${humanChoice} beats ${computerChoice}!`;
+            target.style.border = "5px solid green";
+            document.getElementById(computerChoice).style.border = "5px solid red";
             break;
         
         case 'lose':
             computerScore += 1;
             console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
             header.textContent = `You lose! ${computerChoice} beats ${humanChoice}!`;
+            document.getElementById(computerChoice).style.border = "5px solid green";
+            target.style.border = "5px solid red";
             break;
         
         case 'draw':
             console.log("It's a draw! Try again!");
             header.textContent = "It's a draw! Try again!";
+            target.style.border = "5px solid yellow";
             break;
         
         default:
             break;
     }
-    borderColor(target, computerChoice);
     console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
     score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 });
