@@ -1,6 +1,10 @@
 let choices = document.querySelector('.choices');
+let message = document.querySelector('#message');
+let score = document.querySelector('#score');
+let header = document.querySelector("#header")
 let humanScore = 0;
 let computerScore = 0;
+score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -29,15 +33,18 @@ choices.addEventListener('click', (event) => {
         case 'win':
             humanScore += 1;
             console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+            header.textContent = `You win! ${humanChoice} beats ${computerChoice}!`;
             break;
         
         case 'lose':
             computerScore += 1;
             console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+            header.textContent = `You lose! ${computerChoice} beats ${humanChoice}!`;
             break;
         
         case 'draw':
             console.log("It's a draw! Try again!");
+            header.textContent = "It's a draw! Try again!";
             break;
         
         default:
@@ -49,6 +56,7 @@ choices.addEventListener('click', (event) => {
 function playRound(humChoice, compChoice) {
         
     console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
+    message.textContent = `Your choice: ${humChoice} | Computer choice: ${compChoice}`;
     if (humChoice == compChoice) {
         return 'draw';
     } else {
