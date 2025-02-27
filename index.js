@@ -4,7 +4,6 @@ let score = document.querySelector('#score');
 let header = document.querySelector("#header")
 let humanScore = 0;
 let computerScore = 0;
-score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -23,6 +22,13 @@ function getComputerChoice() {
     }
         
 }
+
+
+function borderColor(humanChoice, computerChoice) {
+    humanChoice.style.border = "5px solid green";
+    document.getElementById(computerChoice).style.border = "5px solid red";
+}
+
 
 choices.addEventListener('click', (event) => {   
     let target = event.target;
@@ -50,7 +56,9 @@ choices.addEventListener('click', (event) => {
         default:
             break;
     }
+    borderColor(target, computerChoice);
     console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
+    score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 });
 
 function playRound(humChoice, compChoice) {

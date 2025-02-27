@@ -24,6 +24,7 @@ div {
 }
 
 .choices {
+    height: 300px;
     background-color: #202A25;
     display: flex;
     justify-content: center;
