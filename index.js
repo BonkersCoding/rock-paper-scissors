@@ -34,7 +34,6 @@ choices.addEventListener('click', (event) => {
     switch (result) {
         case 'win':
             humanScore += 1;
-            console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
             header.textContent = `You win! ${humanChoice} beats ${computerChoice}!`;
             target.style.border = "5px solid green";
             document.getElementById(computerChoice).style.border = "5px solid red";
@@ -42,14 +41,12 @@ choices.addEventListener('click', (event) => {
         
         case 'lose':
             computerScore += 1;
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
             header.textContent = `You lose! ${computerChoice} beats ${humanChoice}!`;
             document.getElementById(computerChoice).style.border = "5px solid green";
             target.style.border = "5px solid red";
             break;
         
         case 'draw':
-            console.log("It's a draw! Try again!");
             header.textContent = "It's a draw! Try again!";
             target.style.border = "5px solid yellow";
             break;
@@ -57,34 +54,35 @@ choices.addEventListener('click', (event) => {
         default:
             break;
     }
-    console.log(`Human: ${humanScore} | Computer: ${computerScore}`);
+    if (humanScore === 5 || computerScore === 5 ) {
+        header.textContent = (humanScore === 5 ? `YOU WIN ${humanScore}:${computerScore}! ` : `COMPUTER WINS ${computerScore}:${humanScore}! `) + ` Click an option to start again`;
+        humanScore = 0;
+        computerScore = 0;
+    }
     score.textContent = `Human: ${humanScore} | Computer: ${computerScore}`;
 });
 
 function playRound(humChoice, compChoice) {
-        
-    console.log(`Your choice: ${humChoice} `,`Computer choice: ${compChoice} `);
     message.textContent = `Your choice: ${humChoice} | Computer choice: ${compChoice}`;
     if (humChoice == compChoice) {
         return 'draw';
-    } else {
-
-        switch (humChoice) {
-            case 'rock':
-                return (compChoice == 'scissors' ? 'win' : 'lose');
-                break;
-            case 'paper':
-                return (compChoice == 'rock' ? 'win' : 'lose');
-                break;
-            case 'scissors':
-                return (compChoice == 'paper' ? 'win' : 'lose');
-                break;
-            default:
-                console.log('invalid string');
-                return 'invalid';
-                break;
+    }   else {
+            switch (humChoice) {
+                case 'rock':
+                    return (compChoice == 'scissors' ? 'win' : 'lose');
+                    break;
+                case 'paper':
+                    return (compChoice == 'rock' ? 'win' : 'lose');
+                    break;
+                case 'scissors':
+                    return (compChoice == 'paper' ? 'win' : 'lose');
+                    break;
+                default:
+                    console.log('invalid string');
+                    return 'invalid';
+                    break;
+            }
         }
-    }
 }
 
 
